@@ -1,0 +1,101 @@
+<!-- templates/predict.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict with {{ model_name }}</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        #upload-section {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f8f8f8;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        #image-preview {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function previewImage() {
+            var preview = document.getElementById('image-preview');
+            var fileInput = document.querySelector('input[type="file"]');
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    {% if model_name == 'Model 1' %}
+        <h1>Welcome to Bone Fracture Model</h1>
+    {% elif model_name == 'Model 2' %}
+        <h1>Welcome to Cervical Fracture Model</h1>
+    {% else %}
+        <h1>Welcome to {{ model_name }}</h1>
+    {% endif %}
+
+    <div id="upload-section">
+        <h2>Upload an Image for Prediction</h2>
+        <form action="{{ url_for('predict_route', model_name=model_name) }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".jpg, .jpeg, .png" onchange="previewImage()">
+            <br><br>
+            <img id="image-preview" alt="Image Preview">
+            <br><br>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>

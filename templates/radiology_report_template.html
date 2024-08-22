@@ -1,0 +1,8 @@
+templates/radiology_report_template.html
+<h2>Radiology Report</h2>
+<p>Patient Name: John Doe</p>
+<p>Age: 35</p>
+<p>Gender: Male</p>
+<p>Fracture Prediction: {% if result['class'] == 0 %}Fractured{% else %}No Fracture{% endif %}</p>
+<p>Probability: {{ result['probability'] }}</p>
+<p>Additional Notes: Lorem ipsum dolor sit amet...</p>

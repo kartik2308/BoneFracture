@@ -1,0 +1,98 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Model</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-image: url('your_background_image.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        h1 {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .model-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .model-card img{
+            height: 240px;
+            width: 250px;
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+            
+        }
+
+        .model-card:hover {
+            transform: scale(1.05);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        li {
+            margin: 10px;
+        }
+
+        a {
+            
+            font-family: "Times New Roman", Times, serif;
+            text-decoration: none;
+            color: #fff;
+            background-color:#001F3F;
+            padding: 10px;
+            border: 2px solid #000000;
+            border-radius: 10px;
+
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Welcome to X-ray detection model</h1>
+    <ul>
+        <li>
+            <div class="model-card">
+                <h2>Bone Fracture Detection</h2>
+                <a href="{{ url_for('predict_route', model_name='Model 1') }}">Explore</a>
+                <img src="https://www.verywellhealth.com/thmb/cHeGmnzpI9aZT7TMLgCDrO2vohQ=/600x450/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1461318445-1e15fc572d5441dbb1234d2a153478b2.jpg" alt="Bone Fracture Image" style="max-width: 100%; border-radius: 8px; margin-top: 30px;">
+            </div>
+        </li>
+        <li>
+            <div class="model-card">
+                <h2>Cervical Fracture Detection</h2>
+                <a href="{{ url_for('predict_route', model_name='Model 2') }}">Explore</a>
+                <img src="https://www.hamidmirmd.com/wp-content/uploads/2022/03/image-26-min.jpg" alt="Cervical Fracture Image" style="max-width: 100%; border-radius: 8px; margin-top: 30px;">
+            </div>
+        </li>
+    </ul>
+</body>
+</html>
